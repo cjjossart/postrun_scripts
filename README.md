@@ -20,7 +20,7 @@ The requirements to run the viralrecon wrapper script as a post-run script on Ne
 3. Click on "Show hidden params" on the sidebar and in "Generic options", toggle 'monochrome_logs' to ON.
 4. On the same sidebar, click on "Launch settings".
 5. In 'Advanced options' in the 'Post-run script' field, enter the following:
-        ```
+```
         echo "--- Starting post-run script ---"
 
         pr_copy_cmd="aws s3 cp s3://dev-wslh-sequencing-analyses/scripts/viralrecon_wrapper_postrun.sh ."
@@ -30,5 +30,9 @@ The requirements to run the viralrecon wrapper script as a post-run script on Ne
         run_script="bash viralrecon_wrapper_postrun.sh"
         echo "Running post-run script with command: '$run_script'"
         $run_script
-        ```
+```
 6. Launch the workflow by clicking "Launch".
+
+### Output
+
+The output of the wrapper script is a csv file: 'viralrecon_wrapper_report.csv'. It is the 'summary_variants_metrics_mqc.csv' output file from the viralrecon workflow with additional output metrics as columns appended to the table. The wrapper script creates a new directory 'wrapper_reports' and copies this file to this directory.
