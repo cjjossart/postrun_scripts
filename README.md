@@ -12,3 +12,16 @@ The requirements to run the viralrecon wrapper script as a post-run script on Ne
 + **Monochrome logs** must be toggled to ON in the 'Generic options' table when entering launch settings and parameters. Stripping text of the ANSI color codes has not yet been implemented.
 
 + A bash script that runs the wrapper script. This bash script gets copied into the Nextflow Tower 'post-run scripts' field and is mostly because of character limits in said field.
+
++ Initiate script with Nextflow tower post-run script commands. Example commands that would go into this field:
+```
+echo "--- Starting post-run script ---"
+
+pr_copy_cmd="aws s3 cp s3://dev-wslh-sequencing-analyses/scripts/viralrecon_wrapper_postrun.sh ."
+echo "Copying bash script to post-run environment with command: '$pr_copy_cmd'.."
+$pr_copy_cmd
+
+run_script="bash viralrecon_wrapper_postrun.sh"
+echo "Running post-run script with command: '$run_script'"
+$run_script
+```
