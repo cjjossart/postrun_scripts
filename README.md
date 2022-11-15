@@ -11,9 +11,12 @@ The requirements to run the viralrecon wrapper script as a post-run script on Ne
 
 + **Monochrome logs** must be toggled to ON in the 'Generic options' table when entering launch settings and parameters. Stripping text of the ANSI color codes has not yet been implemented.
 
-+ A bash script that installs the dependencies needed for the wrapper script (eg. pysam, pandas, boto3, etc.) and runs the wrapper script. This bash script gets copied into the Nextflow Tower 'post-run scripts' field and is required mostly because of character limits in said field.
++ A bash script that installs the dependencies needed for the wrapper script (eg. pysam, pandas, boto3, etc.) and runs the wrapper script. This bash script gets copied into the Nextflow Tower post-run environment and is required mostly because of character limits in said field.
 
 ### Running the viralrecon wrapper script over Nextflow Tower
+
+The viralrecon wrapper is simply a python script that appends additional data metrics to the viralrecon output file 'summary_variants_metrics_mqc.csv'. This python script, as well as the bash script that installs the dependecies in the post-run environment and runs the python script, are copied from an AWS S3 bucket to the post-run environment using commands from the [AWS CLI](https://aws.amazon.com/cli/). It is important to know the S3 bucket URI where these scripts are and change the URI accordingly.
+
 
 1. Choose the viralrecon workflow in the Nextflow Tower launchpad.
 2. Select/enter in all desired parameters.
