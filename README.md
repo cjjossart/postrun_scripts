@@ -38,7 +38,7 @@ The viralrecon wrapper is simply a python script that appends additional data me
 
 ### Output
 
-The output of the wrapper script is a csv file: 'viralrecon_wrapper_report.csv'. It is the 'summary_variants_metrics_mqc.csv' output file from the viralrecon workflow with additional output metrics as columns appended to the table. The wrapper script creates a new directory 'wrapper_reports' and copies this file to this directory.
+The output of the wrapper script is a csv file: ```viralrecon_wrapper_report.csv```. It is the ```summary_variants_metrics_mqc.csv``` output file from the viralrecon workflow with additional output metrics as columns appended to the table. The wrapper script creates a new directory ```wrapper_reports``` and copies this file to this directory.
 
 ```
 $viralrecon_output_directory
