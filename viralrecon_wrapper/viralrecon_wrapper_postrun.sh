@@ -11,7 +11,7 @@ echo "Getting 'outdir' from log file and exporting as a variable with command: '
 $outdir_cmd
 echo "Variable 'outdir' is: $outdir"
 
-echo "Copying tower_postrun_test script to current dir.."
+echo "Copying viralrecon wrapper script to current dir.."
 aws s3 cp s3://dev-wslh-sequencing-analyses/scripts/viralrecon_wrapper.py .
 
 echo "Installing pandas boto3 and cython"
