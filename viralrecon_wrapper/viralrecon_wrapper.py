@@ -11,6 +11,9 @@ outdir = sys.argv[1]
 outbucket = outdir.strip().replace("s3://", "").split("/")[0].strip()
 prefix = "/".join(outdir.replace("s3://", "").split(outbucket)[-1].split("/")[1:])
 
+if not prefix.endswith("/"):
+    prefix = prefix + "/"
+
 s3 = boto3.client('s3')
 
 def get_summary_file(outdir, outfile):
@@ -69,8 +72,8 @@ def get_pangolin_data(int_outfile, fin_outfile):
                 header = line
             else:
                 p_sample = line.split(",")[0]
-                sample = "_".join(p_sample.split("_")[:-1])
-                line_dict[sample] = ",".join(line.split(",")[1:]) # the dict has desired sample ID as the key and rest of line as value
+                sample = p_sample.split(" ")[0]
+                line_dict[sample] = ",".join(line.split(",")[1:])  # the dict has desired sample ID as the key and rest of line as value
         fo.write(header)
         for k, v in line_dict.items():
             fo.write(k + "," + v)
@@ -205,8 +208,6 @@ def combine_results(summary_file, samtools_cov_file, pangolin_file, nextclade_fi
     except:
         print(f"Copying {wrapper_output} to S3 Bucket {outbucket} was unsuccessful..." + "\n")
 
-
-    
 
 def main():
     sum_file = get_summary_file(outdir, "summary_variants_metrics_mqc.csv")
