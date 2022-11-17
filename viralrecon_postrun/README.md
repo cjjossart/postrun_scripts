@@ -12,7 +12,7 @@ The requirements to run the viralrecon postrun script on Nextflow Tower are as f
 
 ### Running the viralrecon postrun script
 
-The viralrecon postrun script is simply a python script that appends additional data metrics to the viralrecon output file ```summary_variants_metrics_mqc.csv```. This python script, as well as the bash script that installs the dependecies in the post-run environment and runs the python script, are copied from an AWS S3 bucket to the post-run environment using commands from the [AWS CLI](https://aws.amazon.com/cli/). It is important to know the S3 bucket URI where these scripts are and change the URI accordingly.
+The viralrecon postrun script is simply a python script that appends additional data metrics to the viralrecon output file ```summary_variants_metrics_mqc.csv```. This python script, as well as the bash script that installs the dependecies in the post-run environment and runs the python script, are copied from this repository to the post-run environment.
 
 
 1. Choose the viralrecon workflow in the Nextflow Tower launchpad.
