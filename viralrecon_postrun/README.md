@@ -21,21 +21,22 @@ The viralrecon postrun script is simply a python script that appends additional 
 4. On the same sidebar, click on "Launch settings".
 5. In 'Advanced options' in the 'Post-run script' field, enter the following:
 ```
-        echo "--- Starting post-run script ---"
+        echo "--- Starting post-run ---"
 
-        pr_copy_cmd="aws s3 cp s3://dev-wslh-sequencing-analyses/scripts/viralrecon_wrapper_postrun.sh ."
-        echo "Copying bash script to post-run environment with command: '$pr_copy_cmd'.."
-        $pr_copy_cmd
+        echo "Getting post-run python script: curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_wrapper/viralrecon_postrun.py"
+        curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_wrapper/viralrecon_wrapper.py
 
-        run_script="bash viralrecon_wrapper_postrun.sh"
-        echo "Running post-run script with command: '$run_script'"
-        $run_script
+        echo "Running post-run bash script: curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_wrapper/viralrecon_bash_postrun.sh"
+        curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_wrapper/viralrecon_wrapper_postrun.sh
+
+        echo "Running bash script: bash viralrecon_bash_postrun.sh"
+        bash viralrecon_bash_postrun.sh
 ```
 6. Launch the workflow by clicking "Launch".
 
 ### Output
 
-The output of the script is a csv file: ```viralrecon_wrapper_report.csv```. It is the ```summary_variants_metrics_mqc.csv``` output file from the viralrecon workflow with additional output metrics as columns appended to the table.
+The output of the script is a csv file: ```viralrecon_postrun_report.csv```. It is the ```summary_variants_metrics_mqc.csv``` output file from the viralrecon workflow with additional output metrics as columns appended to the table.
 
 
 ## Authors
