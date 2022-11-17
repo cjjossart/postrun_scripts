@@ -139,7 +139,7 @@ def get_nextclade_data(int_file, outfile):
     return outfile
 
 
-def combine_results(summary_file, samtools_cov_file, pangolin_file, nextclade_file, wrapper_output):
+def combine_results(summary_file, samtools_cov_file, pangolin_file, nextclade_file, postrun_output):
     # function that takes in any files generated from this script and adds to the summary dataframe
 
     print("Generating wrapper summary report" + "\n")
@@ -194,19 +194,18 @@ def combine_results(summary_file, samtools_cov_file, pangolin_file, nextclade_fi
     else:
         print("Combined nextclade file wasn't created/doesn't exist.")
     
-    sum_df.to_csv(wrapper_output, columns = columns, index=False)
+    sum_df.to_csv(postrun_output, columns = columns, index=False)
 
     # put the combined summary file into an S3 bucket. 
-    print("Copying wrapper report file to S3 Bucket..." + "\n")
-    key = prefix + "wrapper_reports/"
+    print("Copying postrun report file to S3 Bucket..." + "\n")
     try:
-        with open(wrapper_output, "rb") as wo:
+        with open(postrun_output, "rb") as wo:
             s3.put_object(Bucket=outbucket,
             Body=wo,
-            Key=key + wrapper_output)
-        print(f"Successfully copied {wrapper_output} to {outbucket}/{key}")
+            Key=prefix + postrun_output)
+        print(f"Successfully copied {postrun_output} to {outbucket}/{key}")
     except:
-        print(f"Copying {wrapper_output} to S3 Bucket {outbucket} was unsuccessful..." + "\n")
+        print(f"Copying {postrun_output} to S3 Bucket {outbucket} was unsuccessful..." + "\n")
 
 
 def main():
@@ -215,7 +214,7 @@ def main():
     pangolin_file = get_pangolin_data("int_combined_pangolin.csv", "final_combined_pangolin.csv")
     nextclade_file = get_nextclade_data("int_nextclade.csv", "final_combined_nextclade.csv")
     samtools_file = samtools_coverage("combined_samtools_cov_report.csv", bam_list)
-    combine_results(sum_file, samtools_file, pangolin_file, nextclade_file, "viralrecon_wrapper_report.csv")
+    combine_results(sum_file, samtools_file, pangolin_file, nextclade_file, "viralrecon_postrun_report.csv")
 
 
 if __name__ == "__main__":
