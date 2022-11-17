@@ -23,11 +23,11 @@ The viralrecon postrun script is simply a python script that appends additional 
 ```
         echo "--- Starting post-run ---"
 
-        echo "Getting post-run python script: curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_wrapper/viralrecon_postrun.py"
-        curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_wrapper/viralrecon_wrapper.py
+        echo "Getting post-run python script: curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_postrun/viralrecon_postrun.py"
+        curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_postrun/viralrecon_postrun.py
 
-        echo "Running post-run bash script: curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_wrapper/viralrecon_bash_postrun.sh"
-        curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_wrapper/viralrecon_wrapper_postrun.sh
+        echo "Running post-run bash script: curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_postrun/viralrecon_bash_postrun.sh"
+        curl -LJO https://raw.githubusercontent.com/wslh-bio/postrun_scripts/main/viralrecon_postrun/viralrecon_bash_postrun.sh
 
         echo "Running bash script: bash viralrecon_bash_postrun.sh"
         bash viralrecon_bash_postrun.sh
