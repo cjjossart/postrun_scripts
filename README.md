@@ -1,2 +1,2 @@
-# wrapper_scripts
-This repository houses wrapper scripts for various Bioinformatics workflows.
+# postrun_scripts
+This repository houses Nextflow Tower post-run scripts for various Bioinformatics workflows.
