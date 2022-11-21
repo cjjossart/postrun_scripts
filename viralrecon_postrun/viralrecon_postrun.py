@@ -61,7 +61,7 @@ def get_pangolin_data(int_outfile, fin_outfile):
                 pangolin_df = pd.concat(df_list)
                 pangolin_df.to_csv(int_outfile, index=False)
     
-    """ in order to generate the final wrapper output, we need to be able to join dataframes on sample name. To do this, we need to
+    """ in order to generate the final postrun output, we need to be able to join dataframes on sample name. To do this, we need to
     parse out the reference fasta file name from the sample name of the pangolin output.
     """
 
