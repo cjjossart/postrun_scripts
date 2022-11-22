@@ -142,7 +142,7 @@ def get_nextclade_data(int_file, outfile):
 def combine_results(summary_file, samtools_cov_file, pangolin_file, nextclade_file, postrun_output):
     # function that takes in any files generated from this script and adds to the summary dataframe
 
-    print("Generating wrapper summary report" + "\n")
+    print("Generating post-run summary report" + "\n")
 
     sum_df = pd.read_csv(summary_file, dtype = str)
     sum_df['depth_after_trimming'] = None
@@ -199,11 +199,11 @@ def combine_results(summary_file, samtools_cov_file, pangolin_file, nextclade_fi
     # put the combined summary file into an S3 bucket. 
     print("Copying postrun report file to S3 Bucket..." + "\n")
     try:
-        with open(postrun_output, "rb") as wo:
+        with open(postrun_output, "rb") as po:
             s3.put_object(Bucket=outbucket,
-            Body=wo,
+            Body=po,
             Key=prefix + postrun_output)
-        print(f"Successfully copied {postrun_output} to {outbucket}/{key}")
+        print(f"Successfully copied {postrun_output} to {outbucket}/{prefix}")
     except:
         print(f"Copying {postrun_output} to S3 Bucket {outbucket} was unsuccessful..." + "\n")
 
