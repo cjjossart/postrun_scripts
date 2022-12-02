@@ -202,10 +202,10 @@ def combine_results(summary_file, samtools_cov_file, pangolin_file, nextclade_fi
         with open(postrun_output, "rb") as po:
             s3.put_object(Bucket=outbucket,
             Body=po,
-            Key=prefix + "multiqc/" + postrun_output)
+            Key=prefix + postrun_output)
         print(f"Successfully copied {postrun_output} to {outbucket}/{prefix}")
     except:
-        print(f"Copying {postrun_output} to S3 Bucket {outbucket} was unsuccessful..." + "\n")
+        print(f"Copying {postrun_output} to S3 Bucket {outbucket}/{prefix} was unsuccessful..." + "\n")
 
 
 def main():
@@ -214,7 +214,7 @@ def main():
     pangolin_file = get_pangolin_data("int_combined_pangolin.csv", "final_combined_pangolin.csv")
     nextclade_file = get_nextclade_data("int_nextclade.csv", "final_combined_nextclade.csv")
     samtools_file = samtools_coverage("combined_samtools_cov_report.csv", bam_list)
-    combine_results(sum_file, samtools_file, pangolin_file, nextclade_file, "postrun_variants_metrics_mqc.csv")
+    combine_results(sum_file, samtools_file, pangolin_file, nextclade_file, "viralrecon_postrun_report.csv")
 
 
 if __name__ == "__main__":
